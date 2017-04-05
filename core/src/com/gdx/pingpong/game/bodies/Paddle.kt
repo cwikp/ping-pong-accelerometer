@@ -8,6 +8,8 @@ import com.gdx.pingpong.utils.GameProperties
 
 class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
 
+    val UPPER_THRESHOLD: Float = 500f
+
     val body: Body
     val bodyDef: BodyDef
 
@@ -29,8 +31,11 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
         setPosition(x, y)
     }
 
-    fun moveHorizontally(speed: Float){
-        body.setLinearVelocity(speed, 0.0f);
+    fun move(speedX: Float, speedY: Float) {
+        val speedY = if (Math.abs(speedX) > UPPER_THRESHOLD && Math.abs(speedY) < UPPER_THRESHOLD) 0.0f else speedY
+        val speedX = if (Math.abs(speedY) > UPPER_THRESHOLD && Math.abs(speedX) < UPPER_THRESHOLD) 0.0f else speedX
+
+        body.setLinearVelocity(speedX, speedY)
         setPosition(body.position.x - width / 2, body.position.y - height / 2)
     }
 
@@ -38,10 +43,10 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
         val paddleShape = PolygonShape()
         paddleShape.setAsBox(width / 2, height / 2)
 
-        val fixtureDef = FixtureDef();
-        fixtureDef.shape = paddleShape;
-        fixtureDef.density = 0.1f;
-        fixtureDef.restitution = 1.0f;
+        val fixtureDef = FixtureDef()
+        fixtureDef.shape = paddleShape
+        fixtureDef.density = 0.1f
+        fixtureDef.restitution = 1.0f
 
         body.createFixture(fixtureDef)
         paddleShape.dispose()
