@@ -16,7 +16,7 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
         setSize(100f, 30f)
 
         bodyDef = BodyDef()
-        bodyDef.type = BodyDef.BodyType.KinematicBody
+        bodyDef.type = BodyDef.BodyType.DynamicBody
         bodyDef.position.set(x + width / 2, y + height / 2)
 
         body = world.createBody(bodyDef)
@@ -27,6 +27,11 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
     fun setBodyPosition(x: Float, y: Float) {
         body.setTransform(x + width / 2, y + height / 2, body.angle)
         setPosition(x, y)
+    }
+
+    fun moveHorizontally(speed: Float){
+        body.setLinearVelocity(speed, 0.0f);
+        setPosition(body.position.x - width / 2, body.position.y - height / 2)
     }
 
     private fun createBodyFixture() {
