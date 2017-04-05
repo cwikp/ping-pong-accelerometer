@@ -4,11 +4,10 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.scenes.scene2d.Stage
-
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
 import com.gdx.pingpong.PingPongGame
-import com.gdx.pingpong.utils.GameProperties.FADEIN_TIME
 import com.gdx.pingpong.utils.GameObjects
+import com.gdx.pingpong.utils.GameProperties.FADEIN_TIME
 
 open class BaseScreen(game: PingPongGame) : Stage(), Screen {
 
@@ -33,19 +32,15 @@ open class BaseScreen(game: PingPongGame) : Stage(), Screen {
     }
 
     override fun pause() {
-        throw UnsupportedOperationException()
     }
 
     override fun resume() {
-        throw UnsupportedOperationException()
     }
 
     override fun hide() {
-        throw UnsupportedOperationException()
     }
 
     override fun dispose() {
-        throw UnsupportedOperationException()
     }
 
 }
