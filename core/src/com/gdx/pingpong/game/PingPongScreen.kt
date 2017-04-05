@@ -1,6 +1,5 @@
 package com.gdx.pingpong.game
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.scenes.scene2d.InputEvent
@@ -42,7 +41,7 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         super.render(delta)
         world.step(1f / 60f, 6, 2)
         gameBall.updatePosition()
-        playerPaddle.move(accelerometer.getY(), accelerometer.getX())
+        playerPaddle.move(accelerometer.getX(), accelerometer.getY())
     }
 
     override fun dispose() {

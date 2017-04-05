@@ -18,13 +18,19 @@ class Accelerometer {
         initialValueZ = Gdx.input.accelerometerZ
     }
 
+    /**
+     *  Since we are using phone in landscape mode, X axis is represented by Y axis
+     */
     fun getX(): Float {
-        val scaledValue = -(Gdx.input.accelerometerX - initialValueX) * Math.abs(MAX_INPUT / (MAX_INPUT - initialValueX)) * SCALE
+        val scaledValue = (Gdx.input.accelerometerY - initialValueY) * Math.abs(MAX_INPUT / (MAX_INPUT - initialValueY)) * SCALE
         return if (Math.abs(scaledValue) < MIN_THRESHOLD) 0.0f else scaledValue
     }
 
+    /**
+     *  Since we are using phone in landscape mode, Y axis is represented by X axis
+     */
     fun getY(): Float {
-        val scaledValue = (Gdx.input.accelerometerY - initialValueY) * Math.abs(MAX_INPUT / (MAX_INPUT - initialValueY)) * SCALE
+        val scaledValue = -(Gdx.input.accelerometerX - initialValueX) * Math.abs(MAX_INPUT / (MAX_INPUT - initialValueX)) * SCALE
         return if (Math.abs(scaledValue) < MIN_THRESHOLD) 0.0f else scaledValue
     }
 
