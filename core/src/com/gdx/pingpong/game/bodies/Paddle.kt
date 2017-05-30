@@ -21,6 +21,7 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
 
         bodyDef = BodyDef()
         bodyDef.type = BodyDef.BodyType.DynamicBody
+        bodyDef.fixedRotation = true
         bodyDef.position.set(toBox2d(x, width), toBox2d(y, height))
 
         body = world.createBody(bodyDef)

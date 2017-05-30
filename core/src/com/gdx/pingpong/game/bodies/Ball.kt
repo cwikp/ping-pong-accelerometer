@@ -32,12 +32,12 @@ class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
     }
 
     private fun createBodyFixture() {
-        val ballShape = PolygonShape()
-        ballShape.setAsBox(toBox2d(width), toBox2d(height))
+        val ballShape = CircleShape()
+        ballShape.radius = toBox2d(width)
 
         val fixtureDef = FixtureDef();
         fixtureDef.shape = ballShape;
-        fixtureDef.density = 1.0f;
+        fixtureDef.density = 0.1f;
         fixtureDef.restitution = 1.0f;
 
         body.createFixture(fixtureDef)

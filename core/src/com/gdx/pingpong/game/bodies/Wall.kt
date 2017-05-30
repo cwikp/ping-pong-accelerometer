@@ -60,7 +60,7 @@ class Wall(world: World, type: Type) : Image(Texture(GamePaths.BALL_SRC)) {
 
         val fixtureDef = FixtureDef();
         fixtureDef.shape = ballShape;
-        fixtureDef.density = 0.1f;
+        fixtureDef.density = 100f;
         fixtureDef.restitution = 1.0f;
 
         body.createFixture(fixtureDef)
