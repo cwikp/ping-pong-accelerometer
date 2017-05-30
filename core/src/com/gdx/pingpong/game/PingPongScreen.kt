@@ -1,7 +1,8 @@
 package com.gdx.pingpong.game
 
+import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.physics.box2d.BodyDef
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer
 import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
@@ -11,9 +12,7 @@ import com.gdx.pingpong.game.bodies.Paddle
 import com.gdx.pingpong.game.bodies.Wall
 import com.gdx.pingpong.game.sensors.Accelerometer
 import com.gdx.pingpong.utils.GameProperties
-import com.badlogic.gdx.physics.box2d.FixtureDef
-
-
+import com.gdx.pingpong.utils.GameProperties.PIXELS_TO_METERS
 
 class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
 
@@ -24,6 +23,8 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
     val downWall: Wall
     val walls: Set<Wall>
     val accelerometer: Accelerometer
+    val debugRenderer: Box2DDebugRenderer
+    val debugMatrix: Matrix4
 
     val DIFFICULTY_LEVEL = 0.7f
 
@@ -36,6 +37,8 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         playerPaddle = Paddle(world)
         opponentPaddle = Paddle(world)
         accelerometer = Accelerometer()
+        debugRenderer = Box2DDebugRenderer()
+        debugMatrix = batch.projectionMatrix.cpy().scale(PIXELS_TO_METERS, PIXELS_TO_METERS, 0.0f);
     }
 
     override fun show() {
@@ -45,15 +48,16 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         walls.forEach { addActor(it) }
         addActor(playerPaddle)
         addActor(opponentPaddle)
-        opponentPaddle.setBodyPosition(gameBall.getX(), GameProperties.VIRTUAL_HEIGHT * 0.9f)
+        opponentPaddle.setBodyPosition(gameBall.x, GameProperties.VIRTUAL_HEIGHT * 0.9f)
     }
 
     override fun render(delta: Float) {
         super.render(delta)
         world.step(1f / 60f, 6, 2)
         gameBall.updatePosition()
-        opponentPaddle.move((gameBall.getX() - opponentPaddle.x) * DIFFICULTY_LEVEL, 0f )
+        opponentPaddle.move((gameBall.x - opponentPaddle.x) * DIFFICULTY_LEVEL, 0f)
         playerPaddle.move(accelerometer.getX(), accelerometer.getY())
+        debugRenderer.render(world, debugMatrix);
     }
 
     override fun dispose() {
