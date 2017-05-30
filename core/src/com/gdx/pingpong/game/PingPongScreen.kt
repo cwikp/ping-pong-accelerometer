@@ -1,6 +1,7 @@
 package com.gdx.pingpong.game
 
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.physics.box2d.BodyDef
 import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
@@ -10,16 +11,21 @@ import com.gdx.pingpong.game.bodies.Paddle
 import com.gdx.pingpong.game.bodies.Wall
 import com.gdx.pingpong.game.sensors.Accelerometer
 import com.gdx.pingpong.utils.GameProperties
+import com.badlogic.gdx.physics.box2d.FixtureDef
+
+
 
 class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
 
     val world: World
     val playerPaddle: Paddle
-    val oponentPaddle: Paddle
+    val opponentPaddle: Paddle
     val gameBall: Ball
     val downWall: Wall
     val walls: Set<Wall>
     val accelerometer: Accelerometer
+
+    val DIFFICULTY_LEVEL = 0.7f
 
     init {
         val gravity = Vector2(0f, 0f)
@@ -28,7 +34,7 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         downWall = Wall(world, Wall.Type.DOWN)
         walls = Wall.createSurroundingWalls(world)
         playerPaddle = Paddle(world)
-        oponentPaddle = Paddle(world)
+        opponentPaddle = Paddle(world)
         accelerometer = Accelerometer()
     }
 
@@ -38,15 +44,15 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         addActor(gameBall)
         walls.forEach { addActor(it) }
         addActor(playerPaddle)
-        addActor(oponentPaddle)
-        oponentPaddle.setBodyPosition(gameBall.getX(), GameProperties.VIRTUAL_HEIGHT * 0.9f)
+        addActor(opponentPaddle)
+        opponentPaddle.setBodyPosition(gameBall.getX(), GameProperties.VIRTUAL_HEIGHT * 0.9f)
     }
 
     override fun render(delta: Float) {
         super.render(delta)
         world.step(1f / 60f, 6, 2)
         gameBall.updatePosition()
-        oponentPaddle.setBodyPosition(gameBall.getX(), oponentPaddle.y)
+        opponentPaddle.move((gameBall.getX() - opponentPaddle.x) * DIFFICULTY_LEVEL, 0f )
         playerPaddle.move(accelerometer.getX(), accelerometer.getY())
     }
 
