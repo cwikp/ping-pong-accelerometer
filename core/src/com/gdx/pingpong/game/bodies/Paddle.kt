@@ -35,8 +35,8 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
     }
 
     fun move(speedX: Float, speedY: Float) {
-        val speedY = if (Math.abs(speedX) > UPPER_THRESHOLD && Math.abs(speedY) < UPPER_THRESHOLD) 0.0f else speedY
-        val speedX = if (Math.abs(speedY) > UPPER_THRESHOLD && Math.abs(speedX) < UPPER_THRESHOLD) 0.0f else speedX
+        val speedY = if (belowThreshold(speedX, speedY)) 0.0f else speedY
+        val speedX = if (belowThreshold(speedY, speedX)) 0.0f else speedX
 
         body.setLinearVelocity(speedX, speedY)
         setPosition(fromBox2d(body.position.x, width), fromBox2d(body.position.y, height))
@@ -54,5 +54,8 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
         body.createFixture(fixtureDef)
         paddleShape.dispose()
     }
+
+    private fun belowThreshold(otherAxisSpeed: Float, thisAxisSpeed: Float)
+            = Math.abs(otherAxisSpeed) > UPPER_THRESHOLD && Math.abs(thisAxisSpeed) < UPPER_THRESHOLD
 
 }

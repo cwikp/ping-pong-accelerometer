@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.gdx.pingpong.game.bodies.BodyUtils.fromBox2d
 import com.gdx.pingpong.game.bodies.BodyUtils.toBox2d
 import com.gdx.pingpong.utils.GamePaths
-
+import com.gdx.pingpong.utils.GameProperties.BALL_SPEED
 import com.gdx.pingpong.utils.GameProperties.VIRTUAL_HEIGHT
 import com.gdx.pingpong.utils.GameProperties.VIRTUAL_WIDTH
 
@@ -24,7 +24,7 @@ class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
 
         body = world.createBody(bodyDef)
         createBodyFixture()
-        body.applyLinearImpulse(0.0f, 1000.0f, x, y, true);
+        body.applyLinearImpulse(0.0f, BALL_SPEED, x, y, true);
     }
 
     fun updatePosition() {

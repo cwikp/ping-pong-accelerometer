@@ -12,6 +12,7 @@ import com.gdx.pingpong.game.bodies.Paddle
 import com.gdx.pingpong.game.bodies.Wall
 import com.gdx.pingpong.game.sensors.Accelerometer
 import com.gdx.pingpong.utils.GameProperties
+import com.gdx.pingpong.utils.GameProperties.DIFFICULTY_LEVEL
 import com.gdx.pingpong.utils.GameProperties.PIXELS_TO_METERS
 
 class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
@@ -25,8 +26,6 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
     val accelerometer: Accelerometer
     val debugRenderer: Box2DDebugRenderer
     val debugMatrix: Matrix4
-
-    val DIFFICULTY_LEVEL = 0.7f
 
     init {
         val gravity = Vector2(0f, 0f)
