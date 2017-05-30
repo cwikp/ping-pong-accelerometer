@@ -3,8 +3,12 @@ package com.gdx.pingpong.game.bodies
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.physics.box2d.*
 import com.badlogic.gdx.scenes.scene2d.ui.Image
+import com.gdx.pingpong.game.bodies.BodyUtils.fromBox2d
+import com.gdx.pingpong.game.bodies.BodyUtils.toBox2d
 import com.gdx.pingpong.utils.GamePaths
-import com.gdx.pingpong.utils.GameProperties
+
+import com.gdx.pingpong.utils.GameProperties.VIRTUAL_HEIGHT
+import com.gdx.pingpong.utils.GameProperties.VIRTUAL_WIDTH
 
 class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
 
@@ -12,11 +16,11 @@ class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
     val bodyDef: BodyDef
 
     init {
-        setPosition(GameProperties.VIRTUAL_WIDTH / 2, GameProperties.VIRTUAL_HEIGHT / 2)
+        setPosition(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2)
 
         bodyDef = BodyDef()
         bodyDef.type = BodyDef.BodyType.DynamicBody
-        bodyDef.position.set(x + width / 2, y + height / 2)
+        bodyDef.position.set(toBox2d(x, width), toBox2d(y, height))
 
         body = world.createBody(bodyDef)
         createBodyFixture()
@@ -24,16 +28,16 @@ class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
     }
 
     fun updatePosition() {
-        setPosition(body.position.x - width / 2, body.position.y - height / 2)
+        setPosition(fromBox2d(body.position.x, width), fromBox2d(body.position.y, height))
     }
 
     private fun createBodyFixture() {
         val ballShape = PolygonShape()
-        ballShape.setAsBox(width / 2, height / 2)
+        ballShape.setAsBox(toBox2d(width), toBox2d(height))
 
         val fixtureDef = FixtureDef();
         fixtureDef.shape = ballShape;
-        fixtureDef.density = 0.0f;
+        fixtureDef.density = 1.0f;
         fixtureDef.restitution = 1.0f;
 
         body.createFixture(fixtureDef)

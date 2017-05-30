@@ -3,6 +3,7 @@ package com.gdx.pingpong.game.bodies
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.physics.box2d.*
 import com.badlogic.gdx.scenes.scene2d.ui.Image
+import com.gdx.pingpong.game.bodies.BodyUtils.toBox2d
 import com.gdx.pingpong.utils.GamePaths
 import com.gdx.pingpong.utils.GameProperties
 
@@ -27,7 +28,7 @@ class Wall(world: World, type: Type) : Image(Texture(GamePaths.BALL_SRC)) {
 
         bodyDef = BodyDef()
         bodyDef.type = BodyDef.BodyType.StaticBody
-        bodyDef.position.set(x + width / 2, y + height / 2)
+        bodyDef.position.set(toBox2d(x, width), toBox2d(y, height))
 
         body = world.createBody(bodyDef)
         createBodyFixture()
@@ -55,7 +56,7 @@ class Wall(world: World, type: Type) : Image(Texture(GamePaths.BALL_SRC)) {
 
     private fun createBodyFixture() {
         val ballShape = PolygonShape()
-        ballShape.setAsBox(width / 2, height / 2)
+        ballShape.setAsBox(toBox2d(width), toBox2d(height))
 
         val fixtureDef = FixtureDef();
         fixtureDef.shape = ballShape;

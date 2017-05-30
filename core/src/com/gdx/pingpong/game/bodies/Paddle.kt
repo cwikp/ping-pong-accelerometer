@@ -3,6 +3,8 @@ package com.gdx.pingpong.game.bodies
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.physics.box2d.*
 import com.badlogic.gdx.scenes.scene2d.ui.Image
+import com.gdx.pingpong.game.bodies.BodyUtils.fromBox2d
+import com.gdx.pingpong.game.bodies.BodyUtils.toBox2d
 import com.gdx.pingpong.utils.GamePaths
 import com.gdx.pingpong.utils.GameProperties
 
@@ -19,7 +21,7 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
 
         bodyDef = BodyDef()
         bodyDef.type = BodyDef.BodyType.DynamicBody
-        bodyDef.position.set(x + width / 2, y + height / 2)
+        bodyDef.position.set(toBox2d(x, width), toBox2d(y, height))
 
         body = world.createBody(bodyDef)
         createBodyFixture()
@@ -27,7 +29,7 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
 
     //todo only temporary - to check collisions - delete this later
     fun setBodyPosition(x: Float, y: Float) {
-        body.setTransform(x + width / 2, y + height / 2, body.angle)
+        body.setTransform(toBox2d(x, width), toBox2d(y, height), body.angle)
         setPosition(x, y)
     }
 
@@ -36,16 +38,16 @@ class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
         val speedX = if (Math.abs(speedY) > UPPER_THRESHOLD && Math.abs(speedX) < UPPER_THRESHOLD) 0.0f else speedX
 
         body.setLinearVelocity(speedX, speedY)
-        setPosition(body.position.x - width / 2, body.position.y - height / 2)
+        setPosition(fromBox2d(body.position.x, width), fromBox2d(body.position.y, height))
     }
 
     private fun createBodyFixture() {
         val paddleShape = PolygonShape()
-        paddleShape.setAsBox(width / 2, height / 2)
+        paddleShape.setAsBox(toBox2d(width), toBox2d(height))
 
         val fixtureDef = FixtureDef()
         fixtureDef.shape = paddleShape
-        fixtureDef.density = 0.1f
+        fixtureDef.density = 100f
         fixtureDef.restitution = 1.0f
 
         body.createFixture(fixtureDef)
