@@ -9,11 +9,13 @@ import com.gdx.pingpong.game.bodies.Ball
 import com.gdx.pingpong.game.bodies.Paddle
 import com.gdx.pingpong.game.bodies.Wall
 import com.gdx.pingpong.game.sensors.Accelerometer
+import com.gdx.pingpong.utils.GameProperties
 
 class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
 
     val world: World
     val playerPaddle: Paddle
+    val oponentPaddle: Paddle
     val gameBall: Ball
     val downWall: Wall
     val walls: Set<Wall>
@@ -26,6 +28,7 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         downWall = Wall(world, Wall.Type.DOWN)
         walls = Wall.createSurroundingWalls(world)
         playerPaddle = Paddle(world)
+        oponentPaddle = Paddle(world)
         accelerometer = Accelerometer()
     }
 
@@ -35,12 +38,15 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         addActor(gameBall)
         walls.forEach { addActor(it) }
         addActor(playerPaddle)
+        addActor(oponentPaddle)
+        oponentPaddle.setBodyPosition(gameBall.getX(), GameProperties.VIRTUAL_HEIGHT * 0.9f)
     }
 
     override fun render(delta: Float) {
         super.render(delta)
         world.step(1f / 60f, 6, 2)
         gameBall.updatePosition()
+        oponentPaddle.setBodyPosition(gameBall.getX(), oponentPaddle.y)
         playerPaddle.move(accelerometer.getX(), accelerometer.getY())
     }
 
