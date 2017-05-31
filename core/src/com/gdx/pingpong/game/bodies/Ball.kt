@@ -6,10 +6,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.gdx.pingpong.game.bodies.utils.BodyType
 import com.gdx.pingpong.game.bodies.utils.Box2dConverters.fromBox2d
 import com.gdx.pingpong.game.bodies.utils.Box2dConverters.toBox2d
-import com.gdx.pingpong.utils.GamePaths
-import com.gdx.pingpong.utils.GameProperties.BALL_SPEED
-import com.gdx.pingpong.utils.GameProperties.VIRTUAL_HEIGHT
-import com.gdx.pingpong.utils.GameProperties.VIRTUAL_WIDTH
+import com.gdx.pingpong.game.GamePaths
+import com.gdx.pingpong.game.GameProperties.BALL_SPEED
+import com.gdx.pingpong.game.GameProperties.VIRTUAL_HEIGHT
+import com.gdx.pingpong.game.GameProperties.VIRTUAL_WIDTH
 
 class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
 

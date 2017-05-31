@@ -1,7 +1,7 @@
 package com.gdx.pingpong
 
 import com.badlogic.gdx.Game
-import com.gdx.pingpong.game.PingPongScreen
+import com.gdx.pingpong.game.screens.PingPongScreen
 
 class PingPongGame : Game() {
 

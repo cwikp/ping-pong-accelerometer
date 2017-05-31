@@ -1,6 +1,6 @@
 package com.gdx.pingpong.game.bodies.utils
 
-import com.gdx.pingpong.utils.GameProperties.PIXELS_TO_METERS
+import com.gdx.pingpong.game.GameProperties.PIXELS_TO_METERS
 
 object Box2dConverters {
 

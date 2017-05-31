@@ -6,8 +6,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse
 import com.badlogic.gdx.physics.box2d.ContactListener
 import com.badlogic.gdx.physics.box2d.Manifold
 import com.gdx.pingpong.game.bodies.utils.BodyType.*
-import com.gdx.pingpong.utils.GameProperties
-import com.gdx.pingpong.utils.GameVariables
+import com.gdx.pingpong.game.GameProperties
+import com.gdx.pingpong.game.GameVariables
 
 
 class BodyListener : ContactListener {

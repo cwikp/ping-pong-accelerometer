@@ -1,4 +1,4 @@
-package com.gdx.pingpong.utils
+package com.gdx.pingpong.game
 
 object GameProperties {
 

@@ -5,8 +5,8 @@ import com.badlogic.gdx.physics.box2d.*
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.gdx.pingpong.game.bodies.utils.BodyType
 import com.gdx.pingpong.game.bodies.utils.Box2dConverters.toBox2d
-import com.gdx.pingpong.utils.GamePaths
-import com.gdx.pingpong.utils.GameProperties
+import com.gdx.pingpong.game.GamePaths
+import com.gdx.pingpong.game.GameProperties
 
 class Wall(world: World, wallType: WallType) : Image(Texture(GamePaths.BALL_SRC)) {
 
