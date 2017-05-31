@@ -3,11 +3,13 @@ package com.gdx.pingpong.game
 import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer
+import com.badlogic.gdx.physics.box2d.ContactListener
 import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.gdx.pingpong.PingPongGame
 import com.gdx.pingpong.game.bodies.Ball
+import com.gdx.pingpong.game.bodies.utils.BodyListener
 import com.gdx.pingpong.game.bodies.Paddle
 import com.gdx.pingpong.game.bodies.Wall
 import com.gdx.pingpong.game.sensors.Accelerometer
@@ -21,9 +23,9 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
     val playerPaddle: Paddle
     val opponentPaddle: Paddle
     val gameBall: Ball
-    val downWall: Wall
     val walls: Set<Wall>
     val accelerometer: Accelerometer
+    val collisionListener: ContactListener
     val debugRenderer: Box2DDebugRenderer
     val debugMatrix: Matrix4
 
@@ -31,11 +33,11 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         val gravity = Vector2(0f, 0f)
         world = World(gravity, true)
         gameBall = Ball(world)
-        downWall = Wall(world, Wall.Type.DOWN)
         walls = Wall.createSurroundingWalls(world)
         playerPaddle = Paddle(world)
         opponentPaddle = Paddle(world)
         accelerometer = Accelerometer()
+        collisionListener = BodyListener()
         debugRenderer = Box2DDebugRenderer()
         debugMatrix = batch.projectionMatrix.cpy().scale(PIXELS_TO_METERS, PIXELS_TO_METERS, 0.0f);
     }
@@ -48,6 +50,7 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         addActor(playerPaddle)
         addActor(opponentPaddle)
         opponentPaddle.setBodyPosition(gameBall.x, GameProperties.VIRTUAL_HEIGHT * 0.9f)
+        world.setContactListener(collisionListener)
     }
 
     override fun render(delta: Float) {

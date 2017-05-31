@@ -3,8 +3,9 @@ package com.gdx.pingpong.game.bodies
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.physics.box2d.*
 import com.badlogic.gdx.scenes.scene2d.ui.Image
-import com.gdx.pingpong.game.bodies.BodyUtils.fromBox2d
-import com.gdx.pingpong.game.bodies.BodyUtils.toBox2d
+import com.gdx.pingpong.game.bodies.utils.BodyType
+import com.gdx.pingpong.game.bodies.utils.Box2dConverters.fromBox2d
+import com.gdx.pingpong.game.bodies.utils.Box2dConverters.toBox2d
 import com.gdx.pingpong.utils.GamePaths
 import com.gdx.pingpong.utils.GameProperties.BALL_SPEED
 import com.gdx.pingpong.utils.GameProperties.VIRTUAL_HEIGHT
@@ -23,6 +24,7 @@ class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
         bodyDef.position.set(toBox2d(x, width), toBox2d(y, height))
 
         body = world.createBody(bodyDef)
+        body.userData = BodyType.BALL
         createBodyFixture()
         body.applyLinearImpulse(0.0f, BALL_SPEED, x, y, true);
     }

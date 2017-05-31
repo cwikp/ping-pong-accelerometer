@@ -7,7 +7,7 @@ object GameProperties {
     val FADEIN_TIME = 0.3f
     val PIXELS_TO_METERS = 20f;
     val WALL_THICKNESS = 10f
-    val BALL_SPEED = 15.0f
-    val DIFFICULTY_LEVEL = 0.5f
+    val BALL_SPEED = 30.0f
+    val DIFFICULTY_LEVEL = 0.3f
 
 }

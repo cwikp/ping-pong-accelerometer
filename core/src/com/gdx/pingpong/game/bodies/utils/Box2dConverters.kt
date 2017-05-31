@@ -1,8 +1,8 @@
-package com.gdx.pingpong.game.bodies
+package com.gdx.pingpong.game.bodies.utils
 
 import com.gdx.pingpong.utils.GameProperties.PIXELS_TO_METERS
 
-object BodyUtils {
+object Box2dConverters {
 
     fun toBox2d(position: Float, size: Float) = (position + size / 2) / PIXELS_TO_METERS
 

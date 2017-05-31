@@ -3,27 +3,28 @@ package com.gdx.pingpong.game.bodies
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.physics.box2d.*
 import com.badlogic.gdx.scenes.scene2d.ui.Image
-import com.gdx.pingpong.game.bodies.BodyUtils.toBox2d
+import com.gdx.pingpong.game.bodies.utils.BodyType
+import com.gdx.pingpong.game.bodies.utils.Box2dConverters.toBox2d
 import com.gdx.pingpong.utils.GamePaths
 import com.gdx.pingpong.utils.GameProperties
 
-class Wall(world: World, type: Type) : Image(Texture(GamePaths.BALL_SRC)) {
+class Wall(world: World, wallType: WallType) : Image(Texture(GamePaths.BALL_SRC)) {
 
     val body: Body
     val bodyDef: BodyDef
 
     companion object Factory {
         fun createSurroundingWalls(world: World): Set<Wall> {
-            return Wall.Type.values().map { it -> Wall(world, it) }.toSet()
+            return Wall.WallType.values().map { it -> Wall(world, it) }.toSet()
         }
     }
 
     init {
-        when (type) {
-            Type.DOWN -> setupDownWall()
-            Type.UP -> setupUpWall()
-            Type.LEFT -> setupLeftWall()
-            Type.RIGHT -> setupRightWall()
+        when (wallType) {
+            WallType.DOWN -> setupDownWall()
+            WallType.UP -> setupUpWall()
+            WallType.LEFT -> setupLeftWall()
+            WallType.RIGHT -> setupRightWall()
         }
 
         bodyDef = BodyDef()
@@ -31,6 +32,7 @@ class Wall(world: World, type: Type) : Image(Texture(GamePaths.BALL_SRC)) {
         bodyDef.position.set(toBox2d(x, width), toBox2d(y, height))
 
         body = world.createBody(bodyDef)
+        body.userData = BodyType.getWallBodyType(wallType)
         createBodyFixture()
     }
 
@@ -67,7 +69,7 @@ class Wall(world: World, type: Type) : Image(Texture(GamePaths.BALL_SRC)) {
         ballShape.dispose()
     }
 
-    enum class Type {
+    enum class WallType {
         UP, DOWN, LEFT, RIGHT
     }
 
