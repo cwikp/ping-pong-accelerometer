@@ -11,7 +11,7 @@ import com.gdx.pingpong.game.GameProperties
 
 class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
 
-    val UPPER_THRESHOLD: Float = 500f
+    val UPPER_THRESHOLD: Float = 50f
 
     val body: Body
     val bodyDef: BodyDef
