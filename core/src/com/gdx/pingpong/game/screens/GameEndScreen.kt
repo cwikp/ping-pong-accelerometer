@@ -18,12 +18,12 @@ class GameEndScreen(game: PingPongGame, result: GameResult) : BaseScreen(game) {
         resultLabel = ActorFactory.createLabel("", FONT_LOGO)
         continueButton = ActorFactory.createTextButton(MENU_BUTTON_SRC, "CONTINUE", FONT_MENU_BUTTONS)
 
-        when (result){
+        when (result) {
             GameResult.LOST -> gameLost()
             GameResult.WON -> gameWon()
         }
-        resultLabel.setPosition((width - resultLabel.prefWidth) / 2, height - resultLabel.prefHeight/2 - 50)
-        continueButton.setPosition((width  - continueButton.prefWidth) /2, height / 2 - 100)
+        resultLabel.setPosition((width - resultLabel.prefWidth) / 2, height - resultLabel.prefHeight / 2 - 50)
+        continueButton.setPosition((width - continueButton.prefWidth) / 2, height / 2 - 100)
     }
 
     override fun show() {

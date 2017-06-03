@@ -1,10 +1,7 @@
 package com.gdx.pingpong
 
 import com.badlogic.gdx.Game
-import com.gdx.pingpong.game.screens.GameEndScreen
-import com.gdx.pingpong.game.screens.GameResult
-import com.gdx.pingpong.game.screens.PingPongScreen
-import com.gdx.pingpong.game.screens.SimpleMenuScreen
+import com.gdx.pingpong.game.screens.*
 
 class PingPongGame : Game() {
 
@@ -18,6 +15,10 @@ class PingPongGame : Game() {
 
     fun showPingPongScreen(){
         setScreen(PingPongScreen(this))
+    }
+
+    fun showOptionsScreen(){
+        setScreen(OptionsScreen(this))
     }
 
     fun showGameEndScreen(gameResult: GameResult){

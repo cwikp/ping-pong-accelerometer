@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.gdx.pingpong.PingPongGame
 import com.gdx.pingpong.game.GameObjects
 import com.gdx.pingpong.game.GameProperties
-import com.gdx.pingpong.game.GameProperties.DIFFICULTY_LEVEL
 import com.gdx.pingpong.game.GameProperties.PIXELS_TO_METERS
 import com.gdx.pingpong.game.GameVariables
 import com.gdx.pingpong.game.bodies.Ball
@@ -69,7 +68,7 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         super.render(delta)
         world.step(1f / 60f, 6, 2)
         gameBall.updatePosition()
-        opponentPaddle.move((gameBall.x - opponentPaddle.x) * DIFFICULTY_LEVEL, 0f)
+        opponentPaddle.move((gameBall.x - opponentPaddle.x) * GameVariables.difficultyLevel, 0f)
         playerPaddle.move(accelerometer.getX(), accelerometer.getY())
         playerScoreLabel.setText(Integer.toString(GameVariables.playerScore))
         opponentScoreLabel.setText(Integer.toString(GameVariables.opponentScore))

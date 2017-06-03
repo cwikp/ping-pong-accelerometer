@@ -56,7 +56,7 @@ class SimpleMenuScreen(game: PingPongGame) : BaseScreen(game) {
 
     private fun setActorsOnScreen() {
         gameName.setPosition((width - gameName.prefWidth) / 2, height - gameName.prefHeight - 60)
-        play.setPosition((width  - play.prefWidth) /2, height / 2)
+        play.setPosition((width - play.prefWidth) / 2, height / 2)
 
         val buttonsSpaceX = 200f
         setDependentActorPosition(play, options, -buttonsSpaceX, 0f)
@@ -72,7 +72,7 @@ class SimpleMenuScreen(game: PingPongGame) : BaseScreen(game) {
             game.showPingPongScreen()
             dispose()
         } else if (options.isPressed) {
-            game.showPingPongScreen()
+            game.showOptionsScreen()
             dispose()
         } else if (exit.isPressed) {
             dispose()
