@@ -15,26 +15,26 @@ class BodyListener : ContactListener {
         val bodyA = contact.fixtureA.body.userData
         val bodyB = contact.fixtureB.body.userData
 
-        if (bodyA.equals(WALL_DOWN) || bodyB.equals(WALL_DOWN)) {
-            if (bodyA.equals(BALL) || bodyB.equals(BALL))
+        if (bodyA == WALL_DOWN || bodyB == WALL_DOWN) {
+            if (bodyA == BALL || bodyB == BALL)
                 GameVariables.opponentScore += 1
         }
 
-        if (bodyA.equals(WALL_UP) || bodyB.equals(WALL_UP)) {
-            if (bodyA.equals(BALL) || bodyB.equals(BALL))
+        if (bodyA == WALL_UP || bodyB == WALL_UP) {
+            if (bodyA == BALL || bodyB == BALL)
                 GameVariables.playerScore += 1
         }
 
-        Gdx.app.log("score: ", "" + GameVariables.opponentScore);
-        Gdx.app.log("beginContact", "between $bodyA and $bodyB");
+        Gdx.app.log("score: ", "" + GameVariables.opponentScore)
+        Gdx.app.log("beginContact", "between $bodyA and $bodyB")
     }
 
     override fun endContact(contact: Contact) {
         val bodyA = contact.fixtureA.body
         val bodyB = contact.fixtureB.body
 
-        if (bodyA.userData.equals(PADDLE) || bodyB.userData.equals(PADDLE)) {
-            if (bodyA.userData.equals(BALL) || bodyB.userData.equals(BALL)) {
+        if (bodyA.userData == PADDLE || bodyB.userData == PADDLE) {
+            if (bodyA.userData == BALL || bodyB.userData == BALL) {
                 val body = if (bodyA.equals(BALL)) bodyA else bodyB
                 val velocity = body.linearVelocity.cpy()
                 val sign = if (velocity.y < 0) -1 else 1

@@ -47,7 +47,7 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         accelerometer = Accelerometer()
         collisionListener = BodyListener()
         debugRenderer = Box2DDebugRenderer()
-        debugMatrix = batch.projectionMatrix.cpy().scale(PIXELS_TO_METERS, PIXELS_TO_METERS, 0.0f);
+        debugMatrix = batch.projectionMatrix.cpy().scale(PIXELS_TO_METERS, PIXELS_TO_METERS, 0.0f)
     }
 
     override fun show() {
@@ -73,12 +73,21 @@ class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
         playerPaddle.move(accelerometer.getX(), accelerometer.getY())
         playerScoreLabel.setText(Integer.toString(GameVariables.playerScore))
         opponentScoreLabel.setText(Integer.toString(GameVariables.opponentScore))
-//        debugRenderer.render(world, debugMatrix); debugger
+        checkScores()
+//        debugRenderer.render(world, debugMatrix)  // debugger
     }
 
     override fun dispose() {
         super.dispose()
         world.dispose()
+    }
+
+    private fun checkScores() {
+        if(GameVariables.playerScore >= GameProperties.GAME_ENDED_SCORE){
+            game.showGameEndScreen(GameResult.WON)
+        } else if (GameVariables.opponentScore >= GameProperties.GAME_ENDED_SCORE){
+            game.showGameEndScreen(GameResult.LOST)
+        }
     }
 
     private fun setupMainClickListener(): ClickListener {
