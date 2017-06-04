@@ -1,30 +1,42 @@
 package com.gdx.pingpong
 
-import com.badlogic.gdx.ApplicationAdapter
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.GL20
-import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.Game
+import com.badlogic.gdx.audio.Music
+import com.gdx.pingpong.game.screens.*
+import com.gdx.pingpong.game.GameObjects
 
-class PingPongGame : ApplicationAdapter() {
-    internal lateinit var batch: SpriteBatch
-    internal lateinit var img: Texture
+
+
+class PingPongGame : Game() {
+
+    private lateinit var backgroundMusic: Music
 
     override fun create() {
-        batch = SpriteBatch()
-        img = Texture("badlogic.jpg")
+        setBackgroundMusic()
+        showMenuScreen()
     }
 
-    override fun render() {
-        Gdx.gl.glClearColor(1f, 0f, 0f, 1f)
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
-        batch.begin()
-        batch.draw(img, 0f, 0f)
-        batch.end()
+    fun showMenuScreen(){
+        backgroundMusic.pause()
+        setScreen(SimpleMenuScreen(this))
     }
 
-    override fun dispose() {
-        batch.dispose()
-        img.dispose()
+    fun showPingPongScreen(){
+        backgroundMusic.play()
+        setScreen(PingPongScreen(this))
+    }
+
+    fun showOptionsScreen(){
+        setScreen(OptionsScreen(this))
+    }
+
+    fun showGameEndScreen(gameResult: GameResult){
+        setScreen(GameEndScreen(this, gameResult))
+    }
+
+    private fun setBackgroundMusic() {
+        backgroundMusic = GameObjects.MUSIC_BACKGROUND
+        backgroundMusic.isLooping = true
+        backgroundMusic.volume = 0.10f
     }
 }
