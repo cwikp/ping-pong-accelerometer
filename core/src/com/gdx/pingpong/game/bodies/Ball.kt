@@ -13,8 +13,8 @@ import com.gdx.pingpong.game.GameProperties.VIRTUAL_WIDTH
 
 class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
 
-    val body: Body
-    val bodyDef: BodyDef
+    private val body: Body
+    private val bodyDef: BodyDef
 
     init {
         setPosition(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2)
@@ -26,7 +26,7 @@ class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
         body = world.createBody(bodyDef)
         body.userData = BodyType.BALL
         createBodyFixture()
-        body.applyLinearImpulse(0.0f, BALL_SPEED, x, y, true);
+        body.applyLinearImpulse(0.0f, BALL_SPEED, x, y, true)
     }
 
     fun updatePosition() {
@@ -37,10 +37,10 @@ class Ball(world: World) : Image(Texture(GamePaths.BALL_SRC)) {
         val ballShape = CircleShape()
         ballShape.radius = toBox2d(width)
 
-        val fixtureDef = FixtureDef();
-        fixtureDef.shape = ballShape;
-        fixtureDef.density = 0.1f;
-        fixtureDef.restitution = 1.0f;
+        val fixtureDef = FixtureDef()
+        fixtureDef.shape = ballShape
+        fixtureDef.density = 0.1f
+        fixtureDef.restitution = 1.0f
 
         body.createFixture(fixtureDef)
         ballShape.dispose()

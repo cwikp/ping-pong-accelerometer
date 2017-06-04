@@ -11,10 +11,10 @@ import com.gdx.pingpong.utils.ActorFactory
 
 class OptionsScreen(game: PingPongGame) : BaseScreen(game) {
 
-    val optionsLabel: Label
-    val difficultyLabel: Label
-    val difficultySlider: Slider
-    val backButton: Button
+    private val optionsLabel: Label
+    private val difficultyLabel: Label
+    private val difficultySlider: Slider
+    private val backButton: Button
 
     init {
         optionsLabel = ActorFactory.createLabel("OPTIONS", GameObjects.FONT_LOGO)

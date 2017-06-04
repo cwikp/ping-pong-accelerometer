@@ -11,6 +11,7 @@ import com.gdx.pingpong.game.GameVariables
 
 
 class BodyListener : ContactListener {
+
     override fun beginContact(contact: Contact) {
         val bodyA = contact.fixtureA.body.userData
         val bodyB = contact.fixtureB.body.userData
@@ -51,4 +52,5 @@ class BodyListener : ContactListener {
     override fun postSolve(p0: Contact?, p1: ContactImpulse?) {
 
     }
+
 }

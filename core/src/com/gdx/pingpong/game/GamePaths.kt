@@ -3,10 +3,11 @@ package com.gdx.pingpong.game
 object GamePaths {
 
     // Paths for Directories
-    val IMAGES = "images/"
-    val FONTS = "fonts/"
-    val BUTTONS = "buttons/"
-    val SKINS = "skins/"
+    private val IMAGES = "images/"
+    private val FONTS = "fonts/"
+    private val BUTTONS = "buttons/"
+    private val SKINS = "skins/"
+    private val MUSIC = "music/"
 
     // Paths for Images
     val PADDLE_SRC = IMAGES + "rounded_rectangle.png"
@@ -20,5 +21,8 @@ object GamePaths {
 
     // Paths for Fonts
     val REGULAR_FONT = FONTS + "SourceSansPro-Regular.ttf"
+
+    // Paths for Music
+    val MUSIC_BACKGROUND = MUSIC + "music.mp3"
 
 }

@@ -8,6 +8,6 @@ object GameProperties {
     val PIXELS_TO_METERS = 20f
     val WALL_THICKNESS = 10f
     val BALL_SPEED = 30.0f
-    val GAME_ENDED_SCORE = 10
+    val GAME_ENDED_SCORE = 50
 
 }

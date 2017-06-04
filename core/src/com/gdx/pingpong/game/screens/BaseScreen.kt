@@ -9,26 +9,24 @@ import com.gdx.pingpong.PingPongGame
 import com.gdx.pingpong.game.GameObjects
 import com.gdx.pingpong.game.GameProperties.FADEIN_TIME
 
-open class BaseScreen(game: PingPongGame) : Stage(), Screen {
-
-    val game: PingPongGame = game;
+open class BaseScreen(protected val game: PingPongGame) : Stage(), Screen {
 
     override fun show() {
         viewport = GameObjects.VIEWPORT
-        root.color.a = 0f;
-        root.addAction(fadeIn(FADEIN_TIME));
+        root.color.a = 0f
+        root.addAction(fadeIn(FADEIN_TIME))
     }
 
     override fun render(delta: Float) {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.input.inputProcessor = this;
-        act(Math.min(Gdx.graphics.deltaTime, 1 / 30f));
-        super.draw();
-        this.draw();
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+        Gdx.input.inputProcessor = this
+        act(Math.min(Gdx.graphics.deltaTime, 1 / 30f))
+        super.draw()
+        this.draw()
     }
 
     override fun resize(width: Int, height: Int) {
-        viewport.update(width, height, true);
+        viewport.update(width, height, true)
     }
 
     override fun pause() {

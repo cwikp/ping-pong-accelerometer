@@ -11,10 +11,10 @@ import com.gdx.pingpong.game.GameProperties
 
 class Paddle(world: World) : Image(Texture(GamePaths.PADDLE_SRC)) {
 
-    val UPPER_THRESHOLD: Float = 50f
+    private val UPPER_THRESHOLD: Float = 50f
 
-    val body: Body
-    val bodyDef: BodyDef
+    private val body: Body
+    private val bodyDef: BodyDef
 
     init {
         setPosition(GameProperties.VIRTUAL_WIDTH / 2, 60f)

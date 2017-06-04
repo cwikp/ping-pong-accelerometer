@@ -12,10 +12,11 @@ import com.gdx.pingpong.utils.ActorFactory
 
 
 class SimpleMenuScreen(game: PingPongGame) : BaseScreen(game) {
-    val play: Button
-    val exit: Button
-    val options: Button
-    val gameName: Label
+
+    private val play: Button
+    private val exit: Button
+    private val options: Button
+    private val gameName: Label
 
     init {
         gameName = ActorFactory.createLabel("Ping Pong Redesigned", GameObjects.FONT_LOGO)
@@ -38,8 +39,6 @@ class SimpleMenuScreen(game: PingPongGame) : BaseScreen(game) {
         addActor(exit)
         addActor(options)
         addActor(gameName)
-
-//        game.getBackgroundMusic().stop()
     }
 
     override fun render(delta: Float) {

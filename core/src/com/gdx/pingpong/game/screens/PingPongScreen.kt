@@ -22,17 +22,17 @@ import com.gdx.pingpong.utils.ActorFactory
 
 class PingPongScreen(game: PingPongGame) : BaseScreen(game) {
 
-    val world: World
-    val playerPaddle: Paddle
-    val opponentPaddle: Paddle
-    val gameBall: Ball
-    val walls: Set<Wall>
-    val accelerometer: Accelerometer
-    val collisionListener: ContactListener
-    val debugRenderer: Box2DDebugRenderer
-    val debugMatrix: Matrix4
-    val playerScoreLabel: Label
-    val opponentScoreLabel: Label
+    private val world: World
+    private val playerPaddle: Paddle
+    private val opponentPaddle: Paddle
+    private val gameBall: Ball
+    private val walls: Set<Wall>
+    private val accelerometer: Accelerometer
+    private val collisionListener: ContactListener
+    private val debugRenderer: Box2DDebugRenderer
+    private val debugMatrix: Matrix4
+    private val playerScoreLabel: Label
+    private val opponentScoreLabel: Label
 
     init {
         val gravity = Vector2(0f, 0f)

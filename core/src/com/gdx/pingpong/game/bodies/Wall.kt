@@ -10,8 +10,8 @@ import com.gdx.pingpong.game.GameProperties
 
 class Wall(world: World, wallType: WallType) : Image(Texture(GamePaths.BALL_SRC)) {
 
-    val body: Body
-    val bodyDef: BodyDef
+    private val body: Body
+    private val bodyDef: BodyDef
 
     companion object Factory {
         fun createSurroundingWalls(world: World): Set<Wall> {
@@ -60,10 +60,10 @@ class Wall(world: World, wallType: WallType) : Image(Texture(GamePaths.BALL_SRC)
         val ballShape = PolygonShape()
         ballShape.setAsBox(toBox2d(width), toBox2d(height))
 
-        val fixtureDef = FixtureDef();
-        fixtureDef.shape = ballShape;
-        fixtureDef.density = 100f;
-        fixtureDef.restitution = 1.0f;
+        val fixtureDef = FixtureDef()
+        fixtureDef.shape = ballShape
+        fixtureDef.density = 100f
+        fixtureDef.restitution = 1.0f
 
         body.createFixture(fixtureDef)
         ballShape.dispose()

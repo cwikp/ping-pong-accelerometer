@@ -11,8 +11,8 @@ import com.gdx.pingpong.utils.ActorFactory
 
 class GameEndScreen(game: PingPongGame, result: GameResult) : BaseScreen(game) {
 
-    val resultLabel: Label
-    val continueButton: Button
+    private val resultLabel: Label
+    private val continueButton: Button
 
     init {
         resultLabel = ActorFactory.createLabel("", FONT_LOGO)
@@ -31,7 +31,6 @@ class GameEndScreen(game: PingPongGame, result: GameResult) : BaseScreen(game) {
         addActor(resultLabel)
         addActor(continueButton)
         resetScore()
-//        game.getBackgroundMusic().stop()
     }
 
     override fun render(delta: Float) {
