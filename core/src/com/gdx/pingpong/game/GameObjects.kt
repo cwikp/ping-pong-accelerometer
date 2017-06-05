@@ -18,4 +18,5 @@ object GameObjects {
     val FONT_MENU_BUTTONS = FontGenerator.generateFont(24, Color.WHITE, GamePaths.REGULAR_FONT)
     val SKIN = Skin(Gdx.files.internal(GamePaths.SKIN_SRC))
     val MUSIC_BACKGROUND = Gdx.audio.newMusic(Gdx.files.internal(GamePaths.MUSIC_BACKGROUND))
+
 }

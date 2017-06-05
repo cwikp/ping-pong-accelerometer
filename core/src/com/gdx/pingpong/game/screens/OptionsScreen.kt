@@ -6,6 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider
 import com.gdx.pingpong.PingPongGame
 import com.gdx.pingpong.game.GameObjects
 import com.gdx.pingpong.game.GamePaths
+import com.gdx.pingpong.game.GameProperties.VIRTUAL_HEIGHT
+import com.gdx.pingpong.game.GameProperties.VIRTUAL_WIDTH
 import com.gdx.pingpong.game.GameVariables
 import com.gdx.pingpong.utils.ActorFactory
 
@@ -22,10 +24,10 @@ class OptionsScreen(game: PingPongGame) : BaseScreen(game) {
         difficultySlider = Slider(0.01f, 0.4f, 0.01f, false, GameObjects.SKIN)
         backButton = ActorFactory.createTextButton(GamePaths.MENU_BUTTON_SRC, "BACK", GameObjects.FONT_MENU_BUTTONS)
 
-        optionsLabel.setPosition((width - optionsLabel.prefWidth) / 2, height - optionsLabel.prefHeight - 60)
-        difficultyLabel.setPosition((width - difficultyLabel.prefWidth) / 2 - 75, height / 2)
-        difficultySlider.setPosition(width / 2, height / 2)
-        backButton.setPosition((width - backButton.prefWidth) / 2, height / 2 - 200)
+        optionsLabel.setPosition((VIRTUAL_WIDTH - optionsLabel.prefWidth) / 2, VIRTUAL_HEIGHT - optionsLabel.prefHeight - 60)
+        difficultyLabel.setPosition((VIRTUAL_WIDTH - difficultyLabel.prefWidth) / 2 - 75, VIRTUAL_HEIGHT / 2)
+        difficultySlider.setPosition(VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2)
+        backButton.setPosition((VIRTUAL_WIDTH - backButton.prefWidth) / 2, VIRTUAL_HEIGHT / 2 - 200)
     }
 
     override fun show() {

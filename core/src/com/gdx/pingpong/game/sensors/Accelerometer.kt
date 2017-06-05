@@ -4,15 +4,15 @@ import com.badlogic.gdx.Gdx
 
 class Accelerometer {
 
-    val SCALE_X: Float = 15f
-    val SCALE_Y: Float = 3f
-    val MIN_X_THRESHOLD: Float = 5f
-    val MIN_Y_THRESHOLD: Float = 8f
-    val MAX_INPUT: Float = 10f
+    private val SCALE_X: Float = 15f
+    private val SCALE_Y: Float = 3f
+    private val MIN_X_THRESHOLD: Float = 5f
+    private val MIN_Y_THRESHOLD: Float = 8f
+    private val MAX_INPUT: Float = 10f
 
-    val initialValueX: Float
-    val initialValueY: Float
-    val initialValueZ: Float
+    private val initialValueX: Float
+    private val initialValueY: Float
+    private val initialValueZ: Float
 
     init {
         initialValueX = Gdx.input.accelerometerX

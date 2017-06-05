@@ -8,6 +8,8 @@ import com.gdx.pingpong.PingPongGame
 import com.gdx.pingpong.game.GameObjects
 import com.gdx.pingpong.game.GameObjects.FONT_MENU_BUTTONS
 import com.gdx.pingpong.game.GamePaths.MENU_BUTTON_SRC
+import com.gdx.pingpong.game.GameProperties.VIRTUAL_HEIGHT
+import com.gdx.pingpong.game.GameProperties.VIRTUAL_WIDTH
 import com.gdx.pingpong.utils.ActorFactory
 
 
@@ -54,8 +56,8 @@ class SimpleMenuScreen(game: PingPongGame) : BaseScreen(game) {
     }
 
     private fun setActorsOnScreen() {
-        gameName.setPosition((width - gameName.prefWidth) / 2, height - gameName.prefHeight - 60)
-        play.setPosition((width - play.prefWidth) / 2, height / 2)
+        gameName.setPosition((VIRTUAL_WIDTH - gameName.prefWidth) / 2, VIRTUAL_HEIGHT - gameName.prefHeight - 60)
+        play.setPosition((VIRTUAL_WIDTH - play.prefWidth) / 2, VIRTUAL_HEIGHT / 2)
 
         val buttonsSpaceX = 200f
         setDependentActorPosition(play, options, -buttonsSpaceX, 0f)

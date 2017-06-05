@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 object ActorFactory {
 
     fun createImage(imagePath: String): Image {
-        return Image(Texture(Gdx.files.local((imagePath))))
+        return Image(Texture(Gdx.files.internal((imagePath))))
     }
 
     fun createLabel(text: String, font: BitmapFont): Label {

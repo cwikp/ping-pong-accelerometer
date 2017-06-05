@@ -5,8 +5,6 @@ import com.badlogic.gdx.audio.Music
 import com.gdx.pingpong.game.screens.*
 import com.gdx.pingpong.game.GameObjects
 
-
-
 class PingPongGame : Game() {
 
     private lateinit var backgroundMusic: Music
